@@ -58,6 +58,8 @@ class Tournament:
 class TournamentTest(unittest.TestCase):
     """TournamentTest, наследованный от TestCase и его методы"""
 
+    is_frozen = True
+
     @classmethod
     def setUpClass(cls):
         """setUpClass - метод, где создаётся атрибут класса all_results. Это словарь в который будут сохраняться
@@ -80,6 +82,7 @@ class TournamentTest(unittest.TestCase):
 
         """Далее методы тестирования забегов, в которых создаётся объект Tournament на дистанцию 90"""
 
+    @unittest.skipIf(is_frozen, 'Тесты заморожены')
     def test_usain_nik(self):
         tornament = Tournament(90, self.Runner_1, self.Runner_3)
         results = tornament.start()  # У объекта класса Tournament запускается метод start, который возвращает
@@ -90,6 +93,7 @@ class TournamentTest(unittest.TestCase):
         self.assertTrue(self.all_results[max(self.all_results)] == "Ник")  # находим ключ с максимальным значением -
         # это и есть последнее место и значение этого ключа всегда равно "Ник")
 
+    @unittest.skipIf(is_frozen, 'Тесты заморожены')
     def test_andrey_nik(self):
         tornament = Tournament(90, self.Runner_2, self.Runner_3)
         results = tornament.start()
@@ -97,6 +101,7 @@ class TournamentTest(unittest.TestCase):
         self.all_results.update(results)
         self.assertTrue(self.all_results[max(self.all_results)] == "Ник")
 
+    @unittest.skipIf(is_frozen, 'Тесты заморожены')
     def test_usain_andrey_nik(self):
         tornament = Tournament(90, self.Runner_1, self.Runner_2, self.Runner_3)
         results = tornament.start()

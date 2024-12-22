@@ -23,7 +23,9 @@ class Runner:
 
 class RunnerTest(unittest.TestCase):
     """класс RunnerTest, наследуемый от TestCase из модуля unittest. """
+    is_frozen = False
 
+    @unittest.skipIf(is_frozen, 'Тесты заморожены')
     def test_walk(self):
         """test_walk - метод, в котором создаётся объект класса Runner с произвольным именем. Далее вызовите метод walk
             у этого объекта 10 раз. После чего методом assertEqual сравните distance этого объекта со значением 50."""
@@ -32,6 +34,7 @@ class RunnerTest(unittest.TestCase):
             Runner_1.walk()
         self.assertEqual(Runner_1.distance, 50)
 
+    @unittest.skipIf(is_frozen, 'Тесты заморожены')
     def test_run(self):
         """test_run - метод, в котором создаётся объект класса Runner с произвольным именем. Далее вызовите метод run
             у этого объекта 10 раз. После чего методом assertEqual сравните distance этого объекта со значением 100."""
@@ -40,6 +43,7 @@ class RunnerTest(unittest.TestCase):
             Runner_2.run()
         self.assertEqual(Runner_2.distance, 100)
 
+    @unittest.skipIf(is_frozen, 'Тесты заморожены')
     def test_challenge(self):
         """test_challenge - метод в котором создаются 2 объекта класса Runner с произвольными именами.
             Далее 10 раз у объектов вызываются методы run и walk соответственно.
